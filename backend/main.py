@@ -126,6 +126,7 @@ async def get_discovery_profiles(user_id: str = Depends(get_user_id)):
         
     # Filter out swiped profiles
     discovery_feed = [p for p in profiles_res.data if p['id'] not in swiped_ids]
+    return discovery_feed
     
 class SwipeAction(BaseModel):
     swipee_id: str
