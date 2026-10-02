@@ -208,16 +208,10 @@ export default function DiscoverPage() {
                      <span className="text-pink-primary font-bold text-xs">@{profile.instagram_handle}</span>
                    )}
                 </div>
-                <div className="grid grid-cols-3 gap-2">
-                  {(profile.photo_urls || []).slice(1).map((url: string, i: number) => (
-                     <div key={i} className="aspect-square bg-white/5 rounded-xl border border-white/10 overflow-hidden">
-                        <img src={url} alt="Photo" className="w-full h-full object-cover" />
-                     </div>
-                  ))}
-                  {/* Fill empty spots if less than 6 */}
-                  {Array.from({ length: Math.max(0, 6 - (profile.photo_urls?.length ? profile.photo_urls.length - 1 : 0)) }).map((_, i) => (
-                     <div key={`empty-${i}`} className="aspect-square bg-white/5 rounded-xl border border-white/10 flex items-center justify-center">
-                        <span className="text-white/20 text-xs">📸</span>
+                <div className="grid grid-cols-2 gap-4">
+                  {(profile.photo_urls || []).slice(1, 3).map((url: string, i: number) => (
+                     <div key={i} className="aspect-square bg-white/5 rounded-xl border border-white/10 overflow-hidden shadow-lg">
+                        <img src={url} alt="Photo" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
                      </div>
                   ))}
                 </div>
