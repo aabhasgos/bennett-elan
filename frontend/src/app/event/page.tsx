@@ -70,16 +70,15 @@ export default function EventHubPage() {
            </div>
         </div>
 
-        {/* Map / Directions */}
+        {/* Event Poster */}
         <div className="luxury-glass p-6 rounded-3xl">
            <h3 className="text-white font-bold text-lg mb-4 flex items-center gap-2">
-             <span className="text-pink-primary">🗺️</span> Campus Map
+             <span className="text-pink-primary">✨</span> The Ball Night
            </h3>
-           <div className="w-full aspect-video bg-black/40 rounded-2xl border border-white/10 flex items-center justify-center overflow-hidden relative group">
-              <span className="text-white/30 text-sm font-medium z-10">Map Image Placeholder</span>
-              <div className="absolute inset-0 bg-gradient-to-br from-pink-primary/5 to-burgundy/20 group-hover:opacity-50 transition-opacity"></div>
+           <div className="w-full rounded-2xl border border-white/10 flex items-center justify-center overflow-hidden shadow-lg">
+              <img src="/poster.jpg" alt="The Ball Night Poster" className="w-full h-auto object-cover" />
            </div>
-           <p className="text-pink-soft/60 text-xs text-center mt-3 font-medium">Upload map image to view venue details</p>
+           <p className="text-pink-soft/80 text-xs text-center mt-4 font-medium italic">New people. Same vibes. A new beginning.</p>
         </div>
 
         {/* Itinerary */}
