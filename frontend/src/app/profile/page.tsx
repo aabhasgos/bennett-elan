@@ -60,8 +60,12 @@ export default function ProfilePage() {
           <>
             <div className="luxury-glass overflow-hidden rounded-3xl p-6 flex flex-col items-center text-center">
                <div className="w-32 h-32 rounded-full bg-gradient-to-br from-pink-primary to-burgundy p-1 mb-4">
-                 <div className="w-full h-full bg-rose-dark rounded-full flex items-center justify-center border-4 border-black/20">
-                    <span className="text-5xl font-serif text-white font-bold">{profile.first_name[0]}</span>
+                 <div className="w-full h-full bg-rose-dark rounded-full flex items-center justify-center border-4 border-black/20 overflow-hidden">
+                    {profile.photo_urls && profile.photo_urls.length > 0 ? (
+                      <img src={profile.photo_urls[0]} alt="Avatar" className="w-full h-full object-cover" />
+                    ) : (
+                      <span className="text-5xl font-serif text-white font-bold">{profile.first_name?.[0] || 'A'}</span>
+                    )}
                  </div>
                </div>
                
@@ -91,6 +95,18 @@ export default function ProfilePage() {
                  )}
               </div>
             </div>
+
+            {profile.profile_prompts && profile.profile_prompts.length > 0 && (
+              <div className="space-y-4 w-full text-left">
+                <h3 className="text-white font-bold text-sm px-2">Your Prompts</h3>
+                {profile.profile_prompts.map((pp: any, i: number) => (
+                  <div key={i} className="luxury-glass p-5 rounded-3xl">
+                    <p className="text-pink-soft text-xs font-semibold uppercase tracking-wider mb-2">{pp.prompts?.question}</p>
+                    <p className="text-white text-lg font-serif">{pp.answer}</p>
+                  </div>
+                ))}
+              </div>
+            )}
 
             <button onClick={() => router.push('/onboarding')} className="button-3d text-white font-bold py-4 rounded-full w-full uppercase tracking-widest text-sm">
                Edit Profile
