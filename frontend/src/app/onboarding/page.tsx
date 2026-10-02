@@ -22,7 +22,7 @@ export default function OnboardingPage() {
   const [lookingFor, setLookingFor] = useState<string[]>([])
   const [intentions, setIntentions] = useState<string[]>([])
   
-  const [photos, setPhotos] = useState<(File | null)>([null, null, null])
+  const [photos, setPhotos] = useState<(File | null)[]>([null, null, null])
   const [photoPreview, setPhotoPreview] = useState<(string | null)[]>([null, null, null])
   
   const [availablePrompts, setAvailablePrompts] = useState<any[]>([])
