@@ -115,6 +115,8 @@ export default function DiscoverPage() {
 
   const profile = profiles[currentIndex]
 
+  if (!profile) return null
+
   return (
     <div className="min-h-screen bg-rose-dark flex flex-col items-center p-4 overflow-hidden relative">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-pink-primary/10 rounded-full blur-[100px] pointer-events-none"></div>
@@ -127,10 +129,10 @@ export default function DiscoverPage() {
           {/* Full-bleed Image Section */}
           <div className="relative h-[65%] min-h-[400px] bg-black/40 flex items-center justify-center overflow-hidden">
              {profile.photo_urls && profile.photo_urls.length > 0 ? (
-                <img src={profile.photo_urls[0]} alt={profile.first_name} className="absolute inset-0 w-full h-full object-cover" />
+                <img src={profile.photo_urls[0]} alt={profile.first_name || 'User'} className="absolute inset-0 w-full h-full object-cover" />
              ) : (
                 <div className="absolute inset-0 bg-gradient-to-br from-burgundy to-rose-dark flex items-center justify-center">
-                   <span className="text-9xl text-white/5 font-serif font-bold">{profile.first_name[0]}</span>
+                   <span className="text-9xl text-white/5 font-serif font-bold">{profile.first_name?.[0] || 'A'}</span>
                 </div>
              )}
              
@@ -140,7 +142,7 @@ export default function DiscoverPage() {
              <div className="absolute bottom-0 left-0 right-0 p-6">
                 <div className="flex items-center gap-3 mb-1">
                   <h2 className="text-4xl font-bold text-white font-serif drop-shadow-md">
-                    {profile.first_name}
+                    {profile.first_name || 'Anonymous'}
                   </h2>
                   <span className="bg-pink-primary text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-widest shadow-[0_0_10px_rgba(224,53,102,0.5)]">
                     Verified
@@ -148,7 +150,7 @@ export default function DiscoverPage() {
                 </div>
                 <p className="text-pink-soft/90 text-sm font-medium flex items-center gap-2">
                   <span className="w-2 h-2 bg-pink-primary rounded-full inline-block shadow-[0_0_5px_rgba(224,53,102,0.8)]"></span>
-                  {profile.age} {profile.course ? `· ${profile.course}` : ''}
+                  {profile.age || '18'} {profile.course ? `· ${profile.course}` : ''}
                 </p>
              </div>
           </div>
@@ -192,7 +194,7 @@ export default function DiscoverPage() {
                    )}
                 </div>
                 <div className="grid grid-cols-3 gap-2">
-                  {profile.photo_urls?.slice(1).map((url: string, i: number) => (
+                  {(profile.photo_urls || []).slice(1).map((url: string, i: number) => (
                      <div key={i} className="aspect-square bg-white/5 rounded-xl border border-white/10 overflow-hidden">
                         <img src={url} alt="Photo" className="w-full h-full object-cover" />
                      </div>
