@@ -117,8 +117,7 @@ async def get_discovery_profiles(user_id: str = Depends(get_user_id)):
     
     # 3. Query profiles
     query = supabase.table('profiles')\
-        .select('*, profile_prompts(*, prompts(*)), profile_interests(*, interests(*))')\
-        .eq('is_verified', True)
+        .select('*, profile_prompts(*, prompts(*)), profile_interests(*, interests(*))')
         
     if looking_for and 'everyone' not in [g.lower() for g in looking_for]:
         query = query.in_('gender', looking_for)
