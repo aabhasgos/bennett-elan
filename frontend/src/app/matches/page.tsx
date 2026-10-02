@@ -75,7 +75,7 @@ export default function MatchesPage() {
             <p className="text-pink-soft text-sm">Keep swiping to find your people for Ball Night.</p>
             <Link href="/discover" className="inline-block mt-6 px-6 py-3 button-3d text-white font-bold rounded-full text-sm">
               Keep Discovering
-            </button>
+            </Link>
           </div>
         ) : (
           <div className="space-y-4">
