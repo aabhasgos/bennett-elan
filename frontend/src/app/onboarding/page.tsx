@@ -17,6 +17,7 @@ export default function OnboardingPage() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   
+  const [firstName, setFirstName] = useState<string>('')
   const [age, setAge] = useState<number | ''>('')
   const [gender, setGender] = useState<string>('')
   const [lookingFor, setLookingFor] = useState<string[]>([])
@@ -123,6 +124,7 @@ export default function OnboardingPage() {
 
       const payload = {
         profile_data: {
+          first_name: firstName,
           age: Number(age),
           gender: gender,
           instagram_handle: instagram || null,
@@ -184,6 +186,17 @@ export default function OnboardingPage() {
             
             <div className="space-y-6">
               
+              <div>
+                <label className="block text-sm text-champagne mb-2 ml-1">First Name</label>
+                <input
+                  type="text"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                  className="w-full bg-black/20 border border-white/10 rounded-2xl p-4 text-white focus:border-pink-primary outline-none transition-colors"
+                  placeholder="Enter your first name"
+                />
+              </div>
+
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm text-champagne mb-2 ml-1">Age</label>
@@ -251,7 +264,7 @@ export default function OnboardingPage() {
 
               <button 
                 onClick={handleNext} 
-                disabled={!age || age < 18 || !gender || lookingFor.length === 0 || intentions.length === 0}
+                disabled={!firstName || !age || age < 18 || !gender || lookingFor.length === 0 || intentions.length === 0}
                 className="w-full button-3d text-white font-bold py-4 mt-8 disabled:opacity-50 tracking-wide"
               >
                 Continue
