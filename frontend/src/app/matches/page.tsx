@@ -30,14 +30,14 @@ export default function MatchesPage() {
       }
 
       // Fetch matches
-      const matchesRes = await fetch(${API_URL}/matches, {
-        headers: { 'Authorization': Bearer  }
+      const matchesRes = await fetch(`${API_URL}/matches`, {
+        headers: { 'Authorization': `Bearer ${session.access_token}` }
       })
       if (matchesRes.ok) setMatches(await matchesRes.json())
       
       // Fetch incoming likes
-      const likesRes = await fetch(${API_URL}/likes, {
-        headers: { 'Authorization': Bearer  }
+      const likesRes = await fetch(`${API_URL}/likes`, {
+        headers: { 'Authorization': `Bearer ${session.access_token}` }
       })
       if (likesRes.ok) setLikes(await likesRes.json())
 
@@ -60,11 +60,11 @@ export default function MatchesPage() {
       const { data: { session } } = await supabase.auth.getSession()
       if (!session) return
 
-      const res = await fetch(${API_URL}/swipe, {
+      const res = await fetch(`${API_URL}/swipe`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': Bearer 
+          'Authorization': `Bearer ${session.access_token}`
         body: JSON.stringify({
           swipee_id: currentProfile.id,
           action: action
