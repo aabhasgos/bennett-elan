@@ -71,6 +71,18 @@ export default function DiscoverPage() {
     }
   }
 
+  if (error) {
+    return (
+      <div className="min-h-screen bg-rose-dark flex flex-col items-center justify-center p-4">
+        <div className="luxury-glass p-8 text-center max-w-sm rounded-3xl">
+          <p className="text-red-400 font-bold mb-4">Error loading profiles</p>
+          <p className="text-white text-sm mb-6">{error}</p>
+          <button onClick={fetchProfiles} className="button-3d text-white font-bold py-3 px-6 rounded-full text-xs uppercase tracking-widest">Try Again</button>
+        </div>
+      </div>
+    )
+  }
+
   if (loading) {
     return (
       <div className="min-h-screen bg-rose-dark flex flex-col items-center p-4">
@@ -96,7 +108,7 @@ export default function DiscoverPage() {
     )
   }
 
-  if (currentIndex >= profiles.length) {
+  if (!profiles || !Array.isArray(profiles) || currentIndex >= profiles.length) {
     return (
       <div className="min-h-screen bg-rose-dark flex flex-col items-center justify-center p-4 relative overflow-hidden">
         {/* 3D Floating Elements */}
