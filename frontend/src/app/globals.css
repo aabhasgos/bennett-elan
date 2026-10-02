@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+:root {
+  /* Romantic Luxury Theme */
+  --rose-dark: #2A0A18;
+  --burgundy: #590F24;
+  --pink-primary: #E03566;
+  --pink-soft: #FFB3C6;
+  --champagne: #F2E3C6;
+  --white-pure: #FFFFFF;
+  
+  --background: var(--rose-dark);
+  --foreground: var(--white-pure);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  
+  --color-rose-dark: var(--rose-dark);
+  --color-burgundy: var(--burgundy);
+  --color-pink-primary: var(--pink-primary);
+  --color-pink-soft: var(--pink-soft);
+  --color-champagne: var(--champagne);
+  
+  --font-serif: 'Playfair Display', serif;
+  --font-sans: 'Plus Jakarta Sans', sans-serif;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  background-image: radial-gradient(circle at top right, rgba(224, 53, 102, 0.15), transparent 40%),
+                    radial-gradient(circle at bottom left, rgba(89, 15, 36, 0.4), transparent 50%);
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Luxury Glassmorphism & 3D Elements */
+.luxury-glass {
+  background: rgba(42, 10, 24, 0.4);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 179, 198, 0.15);
+  border-top: 1px solid rgba(255, 179, 198, 0.3);
+  border-left: 1px solid rgba(255, 179, 198, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+  border-radius: 24px;
+}
+
+.button-3d {
+  background: linear-gradient(135deg, var(--pink-primary), #B81D47);
+  box-shadow: 0 4px 15px rgba(224, 53, 102, 0.4), inset 0 2px 0 rgba(255,255,255,0.2);
+  border-radius: 999px;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.button-3d:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(224, 53, 102, 0.6), inset 0 2px 0 rgba(255,255,255,0.2);
+}
+
+.button-3d:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 10px rgba(224, 53, 102, 0.4);
+}
+
+/* Heart 3D floating animation */
+@keyframes float {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-15px) rotate(5deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+.floating-heart {
+  animation: float 6s ease-in-out infinite;
+  filter: drop-shadow(0 10px 15px rgba(224, 53, 102, 0.3));
+}
