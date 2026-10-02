@@ -44,6 +44,9 @@ export default function DiscoverPage() {
     if (currentIndex >= profiles.length) return
     const currentProfile = profiles[currentIndex]
     
+    // Optimistic UI update: instantly move to next profile
+    setCurrentIndex(prev => prev + 1)
+    
     try {
       const { data: { session } } = await supabase.auth.getSession()
       if (!session) return
@@ -60,12 +63,12 @@ export default function DiscoverPage() {
         })
       })
 
-      const result = await res.json()
-      if (result.status === 'match') {
-        console.log("It's a Match!")
+      if (res.ok) {
+        const result = await res.json()
+        if (result.status === 'match') {
+          console.log("It's a Match!")
+        }
       }
-
-      setCurrentIndex(prev => prev + 1)
     } catch (err) {
       console.error("Action failed", err)
     }
