@@ -101,12 +101,12 @@ export default function LoginPage() {
         ) : (
           <form onSubmit={handleVerifyOtp} className="space-y-6 animate-in fade-in zoom-in-95 duration-300">
             <div>
-              <p className="text-sm text-pink-soft/80 mb-4 text-center">We sent a 6-digit code to <br/><span className="text-white font-bold">{email}</span></p>
+              <p className="text-sm text-pink-soft/80 mb-4 text-center">We sent a login code to <br/><span className="text-white font-bold">{email}</span></p>
               <input
                 type="text"
                 value={otp}
                 onChange={(e) => setOtp(e.target.value)}
-                placeholder="Enter 6-digit code"
+                placeholder="Enter login code"
                 className="w-full bg-black/20 border border-white/10 rounded-xl p-4 text-white text-center tracking-[0.5em] focus:border-pink-primary outline-none transition-colors text-xl font-bold"
                 required
               />
