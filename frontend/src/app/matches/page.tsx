@@ -65,12 +65,12 @@ export default function MatchesPage() {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${session.access_token}`
+        },
         body: JSON.stringify({
           swipee_id: currentProfile.id,
           action: action
         })
       })
-
       if (res.ok) {
         const result = await res.json()
         if (result.status === 'match' && result.match_id) {
