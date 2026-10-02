@@ -18,8 +18,8 @@ export default function LoginPage() {
     e.preventDefault()
     setError(null)
     
-    if (!email.endsWith('@bennett.edu.in')) {
-      setError("Please use a valid @bennett.edu.in email address.")
+    if (!email) {
+      setError("Please enter an email address.")
       return
     }
 
@@ -85,7 +85,7 @@ export default function LoginPage() {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="e.g. e22cseu0000@bennett.edu.in"
+                placeholder="e.g. name@example.com"
                 className="w-full bg-black/20 border border-white/10 rounded-xl p-4 text-white focus:border-pink-primary outline-none transition-colors"
                 required
               />
