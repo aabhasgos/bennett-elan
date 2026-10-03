@@ -108,7 +108,7 @@ export default function ProfilePage() {
               </div>
             )}
 
-            <button onClick={() => router.push('/onboarding')} className="button-3d text-white font-bold py-4 rounded-full w-full uppercase tracking-widest text-sm">
+            <button onClick={() => router.push('/onboarding?edit=true')} className="button-3d text-white font-bold py-4 rounded-full w-full uppercase tracking-widest text-sm">
                Edit Profile
             </button>
           </>
