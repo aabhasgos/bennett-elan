@@ -42,6 +42,20 @@ export default function OnboardingPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const { data: { session } } = await supabase.auth.getSession()
+        if (session) {
+          // Check if user is already onboarded
+          const { data: profile } = await supabase.from('profiles').select('first_name, gender').eq('id', session.user.id).single()
+          if (profile && profile.first_name && profile.gender) {
+            router.push('/discover')
+            return
+          }
+        }
+      } catch(err) {
+        console.error(err)
+      }
+
+      try {
         const [promptsRes, interestsRes] = await Promise.all([
           fetch(`${API_URL}/prompts`),
           fetch(`${API_URL}/interests`)
