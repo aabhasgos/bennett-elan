@@ -152,11 +152,15 @@ export default function MatchesPage() {
               <Link key={match.match_id} href={`/chat/${match.match_id}`}>
                 <div className="luxury-glass p-4 flex items-center gap-4 transition-transform hover:scale-[1.02] cursor-pointer group">
                   
-                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-pink-primary to-burgundy p-0.5">
-                    <div className="w-full h-full rounded-full bg-rose-dark flex items-center justify-center border-2 border-transparent group-hover:border-white/20 transition-all">
-                       <span className="text-2xl font-serif text-pink-soft font-bold">
-                         {match.profile.first_name[0]}
-                       </span>
+                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-pink-primary to-burgundy p-0.5 shrink-0">
+                    <div className="w-full h-full rounded-full bg-rose-dark flex items-center justify-center border-2 border-transparent group-hover:border-white/20 transition-all overflow-hidden">
+                       {match.profile.photo_urls && match.profile.photo_urls.length > 0 ? (
+                         <img src={match.profile.photo_urls[0]} alt={match.profile.first_name} className="w-full h-full object-cover" />
+                       ) : (
+                         <span className="text-2xl font-serif text-pink-soft font-bold">
+                           {match.profile.first_name[0]}
+                         </span>
+                       )}
                     </div>
                   </div>
                   
