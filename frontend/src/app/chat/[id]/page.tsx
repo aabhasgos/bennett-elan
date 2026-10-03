@@ -13,12 +13,25 @@ export default function ChatPage() {
   const [messages, setMessages] = useState<any[]>([])
   const [newMessage, setNewMessage] = useState('')
   const [userId, setUserId] = useState<string | null>(null)
+  const [partnerProfile, setPartnerProfile] = useState<any>(null)
   
   const supabase = createClient()
   const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:8000'
   const messagesEndRef = useRef<HTMLDivElement>(null)
 
+
   useEffect(() => {
+    const fetchPartnerProfile = async () => {
+      const { data: { session } } = await supabase.auth.getSession()
+      if (!session) return
+      const { data: match } = await supabase.from('matches').select('user1_id, user2_id').eq('id', matchId).single()
+      if (match) {
+        const partnerId = match.user1_id === session.user.id ? match.user2_id : match.user1_id
+        const { data: profile } = await supabase.from('profiles').select('first_name, photo_urls').eq('id', partnerId).single()
+        setPartnerProfile(profile)
+      }
+    }
+    fetchPartnerProfile()
     fetchSession()
     fetchMessages()
     
@@ -91,11 +104,15 @@ export default function ChatPage() {
           </svg>
         </button>
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full bg-pink-primary/20 flex items-center justify-center border border-pink-primary/50">
-            <span className="text-xl">✨</span>
+          <div className="w-10 h-10 rounded-full bg-pink-primary/20 flex items-center justify-center border border-pink-primary/50 overflow-hidden shrink-0">
+            {partnerProfile?.photo_urls?.[0] ? (
+              <img src={partnerProfile.photo_urls[0]} alt="Partner" className="w-full h-full object-cover" />
+            ) : (
+              <span className="text-xl font-bold font-serif text-pink-soft">{partnerProfile?.first_name?.[0] || '?'}</span>
+            )}
           </div>
           <div>
-            <h2 className="text-white font-bold font-serif">Ball Night Match</h2>
+            <h2 className="text-white font-bold font-serif">{partnerProfile ? partnerProfile.first_name : 'Loading...'}</h2>
             <p className="text-pink-soft/70 text-xs">Plan your night together</p>
           </div>
         </div>
