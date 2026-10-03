@@ -71,7 +71,7 @@ export default function OnboardingPage() {
             if (profilePrompts && profilePrompts.length > 0) {
                const sPrompts = [null, null, null]
                const pAnswers = ['', '', '']
-               profilePrompts.forEach(pp => {
+               profilePrompts.forEach((pp: any) => {
                   if (pp.position >= 0 && pp.position < 3) {
                      sPrompts[pp.position] = pp.prompts
                      pAnswers[pp.position] = pp.answer
