@@ -96,7 +96,7 @@ export default function LoginPage() {
         )}
 
         <div className="space-y-6">
-          <p className="text-sm text-center text-white/70 mb-4 font-medium">Please sign in with your Google account to continue.</p>
+          <p className="text-sm text-center text-white/70 mb-4 font-medium">Welcome! Please sign in to continue.</p>
           
           <button 
             type="button" 
@@ -112,6 +112,10 @@ export default function LoginPage() {
             </svg>
             {loading ? 'Connecting...' : 'Continue with Google'}
           </button>
+          
+          <p className="text-center text-xs text-white/40 mt-6 px-2">
+            By continuing, you agree to our <a href="#" className="underline hover:text-white/80">Terms of Service</a> and <a href="#" className="underline hover:text-white/80">Privacy Policy</a>.
+          </p>
         </div>
       </div>
     </div>

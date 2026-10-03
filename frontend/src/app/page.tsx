@@ -35,7 +35,7 @@ export default function Home() {
         <div className="pt-4 w-full">
           <Link href="/login" className="block w-full">
             <button className="w-full button-3d text-white font-bold py-5 px-8 text-lg tracking-wide">
-              Enter with Bennett Email
+              Enter with Google
             </button>
           </Link>
         </div>
