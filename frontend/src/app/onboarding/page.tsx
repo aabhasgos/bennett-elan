@@ -132,7 +132,7 @@ export default function OnboardingPage() {
 
   const uploadPhotosToSupabase = async (userId: string) => {
     const urls = []
-    for (let i = 0; i < photos.length; i++) {
+    for (let i = 0; i < 3; i++) {
       const file = photos[i]
       if (file) {
         const fileExt = file.name.split('.').pop()
@@ -150,6 +150,9 @@ export default function OnboardingPage() {
            const { data: publicUrlData } = supabase.storage.from('profile_photos').getPublicUrl(fileName)
            urls.push(publicUrlData.publicUrl)
         }
+      } else if (photoPreview[i] && typeof photoPreview[i] === 'string' && photoPreview[i]?.startsWith('http')) {
+        // Keep existing photo
+        urls.push(photoPreview[i])
       }
     }
     return urls
