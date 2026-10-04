@@ -80,6 +80,12 @@ export default function OnboardingPage() {
                setSelectedPrompts(sPrompts)
                setPromptAnswers(pAnswers)
             }
+            
+            // Also fetch existing interests
+            const { data: profileInterests } = await supabase.from('profile_interests').select('interest_id').eq('profile_id', session.user.id)
+            if (profileInterests && profileInterests.length > 0) {
+               setSelectedInterests(profileInterests.map((pi: any) => pi.interest_id))
+            }
           }
         }
       } catch(err) {
@@ -181,7 +187,8 @@ export default function OnboardingPage() {
           min_age: 18,
           max_age: 25
         },
-        answers
+        answers,
+        interests: selectedInterests
       }
 
       const res = await fetch(`${API_URL}/profile/setup`, {

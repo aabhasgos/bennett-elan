@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException, Depends, Header
+from fastapi import FastAPI, HTTPException, Depends, Header, Body
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from supabase import create_client, Client
@@ -80,6 +80,7 @@ async def setup_profile(
     profile_data: ProfileUpdate, 
     preferences_data: PreferencesUpdate,
     answers: List[PromptAnswer],
+    interests: List[str] = Body(default=[]),
     user_id: str = Depends(get_user_id)
 ):
     profile_dict = profile_data.dict(exclude_unset=True)
@@ -90,6 +91,7 @@ async def setup_profile(
     prefs['profile_id'] = user_id
     supabase.table('preferences').upsert(prefs).execute()
     
+    # Answers
     for ans in answers:
         supabase.table('profile_prompts').upsert({
             "profile_id": user_id,
@@ -97,6 +99,15 @@ async def setup_profile(
             "answer": ans.answer,
             "position": ans.position
         }).execute()
+        
+    # Interests
+    if interests:
+        # Clear old interests
+        supabase.table('profile_interests').delete().eq('profile_id', user_id).execute()
+        # Insert new
+        interest_records = [{"profile_id": user_id, "interest_id": i_id} for i_id in interests]
+        if interest_records:
+            supabase.table('profile_interests').insert(interest_records).execute()
         
     return {"status": "success", "message": "Profile setup complete."}
 
