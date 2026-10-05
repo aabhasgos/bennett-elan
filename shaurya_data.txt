@@ -1,0 +1,50 @@
+=== PROFILE ===
+{
+  "id": "db919ed0-7ada-432e-b69c-df5f5826241e",
+  "email": "lucifer071008@gmail.com",
+  "first_name": "Shaurya",
+  "age": 19,
+  "course": null,
+  "year": null,
+  "bio": null,
+  "instagram_handle": "_.shauryagangal._",
+  "is_verified": false,
+  "created_at": "2026-10-02T20:13:55.953934+00:00",
+  "updated_at": "2026-10-02T20:13:55.953934+00:00",
+  "gender": "Male",
+  "photo_urls": [
+    "https://clkdukkxstcrgheaettp.supabase.co/storage/v1/object/public/profile_photos/db919ed0-7ada-432e-b69c-df5f5826241e-0-0.8080473621705587.jpeg",
+    "https://clkdukkxstcrgheaettp.supabase.co/storage/v1/object/public/profile_photos/db919ed0-7ada-432e-b69c-df5f5826241e-1-0.6560230598662742.jpeg",
+    "https://clkdukkxstcrgheaettp.supabase.co/storage/v1/object/public/profile_photos/db919ed0-7ada-432e-b69c-df5f5826241e-2-0.6607602270076821.jpeg"
+  ]
+}
+
+=== PREFERENCES ===
+{
+  "profile_id": "db919ed0-7ada-432e-b69c-df5f5826241e",
+  "intentions": [
+    "date",
+    "dance_partner"
+  ],
+  "looking_for_gender": [
+    "Female"
+  ],
+  "min_age": 18,
+  "max_age": 25,
+  "created_at": "2026-10-02T20:19:34.673254+00:00"
+}
+
+=== PROMPTS ===
+Q: Your ideal entrance would be...
+A: Going to the dance floor with my beautiful date and a banger dance step. 
+Q: Dance floor or conversation corner?
+A: Dance floor without a doubt
+Q: My biggest green flag...
+A: There are no green flags, i am a green forest 😋
+
+=== SWIPES ===
+Swipes made by him: 0
+Right swipes received: 0
+
+=== MATCHES ===
+Total Matches: 0
